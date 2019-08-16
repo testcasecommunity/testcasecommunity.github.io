@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+	<title>Login 登录</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="icon" href="images/logo2.ico" />
+	<link rel="stylesheet" href="assets/layui/css/layui.css" media="all">
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<script>
+		var _hmt = _hmt || [];
+		(function () {
+			var hm = document.createElement("script");
+			hm.src = "https://hm.baidu.com/hm.js?ee3004411cd5552e251d9bc5fc7ac03b";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<header id="header">
+		<a class="logo" href="index.html">测试用例社区 - Testcase Community</a>
+		<nav>
+			<a href="javascript:login();" id="account">登录</a>
+			<a href="#menu">目录</a>
+		</nav>
+	</header>
+
+	<!-- Nav -->
+	<nav id="menu">
+		<ul class="links">
+			<li><a href="index.html">主页</a></li>
+		</ul>
+	</nav>
+
+	<!-- Content -->
+	<section id="main" class="wrapper">
+		<div class="inner">
+			<div class="content">
+
+				<h2 style="text-align: center">登录跳转页</h2>
+				<hr>
+
+				<div id='curStatus'>
+					<div style = "text-align:center;">
+						<i class="layui-icon layui-icon-loading-1 layui-anim layui-anim-rotate layui-anim-loop" style="font-size: 30px;"></i>
+					</div>
+					<h3 style = "text-align:center;">正在处理...</h3>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<div class="content">
+				<section>
+					<h3>关于社区</h3>
+					<p>测试用例社区（Testcase Community）是希望为学习信息方向相关课程的同学提供便利的社区。
+						在编写程序的过程中，最让人头疼的其实是一些边界、极端的测试用例，以及程序中不起眼的BUG。我希望通过这个社区，可以让所有学习者分享、
+						贡献测试用例，并且方便地进行测试，借此减少DEBUG的时间，提高学习效率，减少抄袭的发生。
+					</p>
+				</section>
+				<section>
+					<h4>快速访问</h4>
+					<ul class="alt">
+						<li><a href="http://www.shanghaitech.edu.cn/" target="_blank">上海科技大学</a></li>
+					</ul>
+				</section>
+				<section>
+					<h4>联系方式</h4>
+					<ul class="plain">
+						<li><a href="mailto:wuhy1@shanghaitech.edu.cn"><i
+									class="icon fa-envelope-o">&nbsp;</i>E-mail</a></li>
+						<li><a href="https://github.com/testcasecommunity" target="_blank"><i
+									class="icon fa-github">&nbsp;</i>Github</a></li>
+					</ul>
+				</section>
+			</div>
+			<div class="copyright">
+				&copy; 2019 Testcase Community. Website support <a href="https://templated.co/"
+					target="_blank">Templated</a>.
+				Picture from <a href="http://www.shanghaitech.edu.cn/mlxy/list.htm" target="_blank">ShanghaiTech</a>.
+				Server support <a href="http://www.dooccn.com/c/" target="_blank">Dooccn</a> <a href="http://github.com/" target="_blank">Github</a>. All rights reserved.
+			</div>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+	<script src="assets/layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="https://unpkg.zhimg.com/github-api/dist/GitHub.bundle.min.js"></script>
+
+	<script src="assets/js/test.min.js"></script>
+
+	<script type="text/html" id="statusInfo">
+		{{#  if(d === 'csrf'){ }}
+			<div style = "text-align:center;">
+				<i class="layui-icon layui-icon-face-surprised" style="font-size: 120px;"></i>
+			</div>
+			<h3 style = "text-align:center;">检测到可能的CSRF攻击。为确保您的数据安全，请重新登录。</h3>
+			<h4 style = "text-align:center;">若此消息持续出现，而您确定安全，请至页面右下角通过邮件联系开发者。</h4>
+		{{#  } else if(d === 'nothing'){ }}
+			<div style = "text-align:center;">
+				<i class="layui-icon layui-icon-face-surprised" style="font-size: 120px;"></i>
+			</div>
+			<h3 style = "text-align:center;">未收到授权信息。请您确定这是跳转页面而非由您直接打开。</h3>
+		{{#  } else if(d === 'fail'){ }}
+			<div style = "text-align:center;">
+				<i class="layui-icon layui-icon-face-cry" style="font-size: 120px;"></i>
+			</div>
+			<h3 style = "text-align:center;">抱歉！登录失败。请稍后重试。</h3>
+		{{#  } else if(d === 'success'){ }}
+			<div style = "text-align:center;">
+				<i class="layui-icon layui-icon-face-smile" style="font-size: 120px;"></i>
+			</div>
+			<h3 style = "text-align:center;">恭喜！登录成功！</h3>
+		{{#  } }}
+	</script>
+
+	<script>
+		function getQueryString(name) {
+			var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null) {
+				return unescape(r[2]);
+			}
+			return null;
+		}
+
+		function setStatusInfo(data) {
+			var getTpl = statusInfo.innerHTML
+			,view = document.getElementById('curStatus');
+			layui.use('laytpl', function(){
+				var laytpl = layui.laytpl;
+				laytpl(getTpl).render(data, function(html){
+					view.innerHTML = html;
+				});
+			});
+		}
+
+		if (getQueryString('state') == null) {
+			setStatusInfo('nothing');
+		} else if (getQueryString('state') != localStorage.getItem('state')) {
+			localStorage.removeItem('state');
+			setStatusInfo('csrf');
+		} else {
+
+			var state = getQueryString('state');
+			localStorage.removeItem('state');
+			var url = "https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token";
+			var code = getQueryString('code');
+			var GITHUB_CLIENT_ID = "ea4d8759d746f5112baa";
+			var GITHUB_CLIENT_SECRET = "9c015e0ba095631ccb566325015c17fcca6598bc";
+			var GITHUB_REDIRECT_URL = "https://testcasecommunity.github.io/login";
+
+			$.ajax({    
+				url: url,
+				type: "POST", 
+				data: {"client_id": GITHUB_CLIENT_ID, "state": state, "redirect_uri":GITHUB_REDIRECT_URL, "code": code, "client_secret": GITHUB_CLIENT_SECRET}, 
+				success: function (data) {
+					var name = 'access_token';
+					var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+					var r = data.substr(0).match(reg);
+					if (r != null) {
+						var token = unescape(r[2]);
+						localStorage.setItem('github_token', token);
+						var gh = new GitHub({
+							token: token
+						});
+						var user = gh.getUser();
+						user.getProfile(function(error, result, request){
+							var obj = document.getElementById("account");
+							obj.href = "javascript:logout();";
+							obj.innerText = "嘿！" + result.login;
+							localStorage.setItem('github_name', result.login);
+							setStatusInfo('success');
+						})
+					} else {
+						setStatusInfo('fail');
+					}
+				},
+				error:  function (error) {
+					console.log(error);
+					setStatusInfo('fail');
+				}
+			});
+		}		
+	</script>
+
+</body>
+
+</html>
